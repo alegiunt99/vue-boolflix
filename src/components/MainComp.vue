@@ -47,4 +47,9 @@ export default {
             flex-direction: column;
         }
     }
+
+    h1{
+        color:white;
+    }
+    
 </style>

@@ -27,6 +27,8 @@ export default {
 
     header{
         display: flex;
+        justify-content: space-between;
+        background-color: #2a2a2a;
         #logo-box{
             width: 150px;
             img{
