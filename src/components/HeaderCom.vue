@@ -1,40 +1,32 @@
 <template>
   <header>
+      <!-- Logo di netflix -->
       <div id="logo-box">
           <img src="@/assets/netflix_logo.png" alt="logo">
       </div>
-        
+
+        <!-- input text per cercare film e serie -->
       <div id="search-box">
-          <SearchBar @searchText="valoreRicerca"/>
+
+            <input v-model="query"  type="text" placeholder="cerca un film o serie tv">
+
+            <button @click="$emit('searchText', query)">Cerca</button>
+
       </div>
   </header>
 </template>
 
 <script>
 
-import SearchBar from '@/components/SearchBar.vue'
-
 export default {
     name: 'HeaderComp',
 
     data(){
         return {
-            testoRicerca: '',
+            query: '',
         }
         
     },
-
-    components:{
-        SearchBar
-    },
-
-    methods:{
-        valoreRicerca(query){
-            this.testoRicerca = query;
-
-            console.log('Header riceve',this.testoRicerca)
-        }
-    }
 }
 </script>
 
@@ -43,12 +35,16 @@ export default {
     header{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         background-color: #2a2a2a;
         #logo-box{
             width: 150px;
             img{
                 width: 100%;
             }
+        }
+        #search-box{
+            padding-right: 10px;
         }
     }
 

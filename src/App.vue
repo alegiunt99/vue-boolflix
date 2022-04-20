@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- Header con logo e searchbar -->
-    <HeaderComp />
+    <HeaderComp @searchText="textValue"/>
 
     <!-- contenitore delle card di film e serie ricercati -->
     <MainComp/>
@@ -18,11 +18,26 @@ import MainComp from '@/components/MainComp.vue';
 
 export default {
   name: 'App',
+
+  data(){
+    return {
+      searchedText: '',
+    }
+  },
+
   components: {
 
     HeaderComp,
 
     MainComp
+  },
+
+  methods: {
+    textValue(query){
+      this.searchedText = query;
+
+      console.log('App Vue riceve', this.searchedText);
+    },
   }
 }
 </script>
