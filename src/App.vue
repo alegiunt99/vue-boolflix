@@ -56,12 +56,14 @@
         console.log(this.searchedText)
       }
 
-      this.searchDs(querys)
+      this.searchFilms(querys);
+
+      this.searchTvSeries(querys);
 
       
     },
 
-    searchDs(ccs) {
+    searchFilms(ccs) {
 
 
       let params = {
@@ -77,7 +79,7 @@
 
           return axios.get(this.apiUrl + 'movie', { params }).then((risultato) => {
             
-            console.log(risultato.data.results)
+            console.log('films:', risultato.data.results)
             return this.films = risultato.data.results;
 
           })
@@ -86,6 +88,29 @@
       }
       
     },
+
+    searchTvSeries(ccs){
+      let params = {
+            query: ccs,
+
+            api_key: this.apiKey,
+          
+            language: 'it-IT',
+          }
+
+
+      if(this.searchedText.length > 0){
+
+          return axios.get(this.apiUrl + 'tv', { params }).then((risultato) => {
+            
+            console.log('serie tv: ',risultato.data.results)
+            return this.tvSeries = risultato.data.results;
+
+          })
+
+        
+      }
+    }
 
   }
 
