@@ -3,12 +3,13 @@
       <div class="container">
           <div class="movies-box">
               <h1>MOVIES</h1>
-              <MovieCards />
+              <div v-for="item in films" :key="item.id">
+                  <p>{{item.title}}</p>
+              </div>
           </div>
 
           <div class="tv-series-box">
               <h1>TV SERIES</h1>
-              <TvSeriesCards/>
           </div>
           
       </div>
@@ -16,18 +17,21 @@
 </template>
 
 <script>
-import MovieCards from '@/components/MovieCard.vue'
-
-import TvSeriesCards from '@/components/TvSeriesCard.vue'
 
 export default {
     name: 'MainComp',
 
-    components:{
+    props: {
 
-        MovieCards,
+        tvSeries: Array,
 
-        TvSeriesCards
+        films: Array
+    },
+
+    methods:{
+        cov(){
+            console.log(this.films)
+        }
     }
 }
 </script>
