@@ -10,6 +10,8 @@
 
 <script>
 
+// import axios from 'axios'; 
+
 import HeaderComp from '@/components/HeaderCom.vue';
 
 import MainComp from '@/components/MainComp.vue';

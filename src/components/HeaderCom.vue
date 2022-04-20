@@ -5,7 +5,7 @@
       </div>
         
       <div id="search-box">
-          <SearchBar />
+          <SearchBar @searchText="valoreRicerca"/>
       </div>
   </header>
 </template>
@@ -17,9 +17,24 @@ import SearchBar from '@/components/SearchBar.vue'
 export default {
     name: 'HeaderComp',
 
+    data(){
+        return {
+            testoRicerca: '',
+        }
+        
+    },
+
     components:{
         SearchBar
     },
+
+    methods:{
+        valoreRicerca(query){
+            this.testoRicerca = query;
+
+            console.log('Header riceve',this.testoRicerca)
+        }
+    }
 }
 </script>
 
