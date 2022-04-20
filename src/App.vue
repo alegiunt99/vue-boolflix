@@ -50,18 +50,14 @@
 
       let querys = query.trim();
 
-      if(querys.length > 0){
-        this.searchedText = querys
+      
+      this.searchedText = querys
 
-        console.log(this.searchedText)
+      console.log(this.searchedText)
 
-        this.searchFilms(querys);
+      this.searchFilms(querys);
 
-        this.searchTvSeries(querys);
-
-      }
-
-      this.searchedText = '';
+      this.searchTvSeries(querys);
       
     },
 

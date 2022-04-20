@@ -8,7 +8,7 @@
         <!-- input text per cercare film e serie -->
       <div id="search-box">
 
-            <input v-model="query"  type="text" placeholder="cerca un film o serie tv">
+            <input v-model="query"  type="text" placeholder="cerca un film o serie tv" @keyup.enter="$emit('searchText', query)">
 
             <button @click="$emit('searchText', query)">Cerca</button>
 
@@ -45,6 +45,26 @@ export default {
         }
         #search-box{
             padding-right: 10px;
+            display: flex;
+            column-gap: 7px;
+            input{
+                font-size: 12px;
+                padding: 6px;
+                background-color: #383838;
+                color: rgb(189, 189, 189);
+                border: none;
+                border-radius: 7px;
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+            button{
+                font-size: 13px;
+                padding: 5px;
+                color: rgb(189, 189, 189);
+                border-radius: 5px;
+                background-color: #444444;
+            }
         }
     }
 
