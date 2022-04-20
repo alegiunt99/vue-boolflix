@@ -48,18 +48,20 @@
 
     textValue(query){
 
-      const querys = query.trim();
+      let querys = query.trim();
 
       if(querys.length > 0){
         this.searchedText = querys
 
         console.log(this.searchedText)
+
+        this.searchFilms(querys);
+
+        this.searchTvSeries(querys);
+
       }
 
-      this.searchFilms(querys);
-
-      this.searchTvSeries(querys);
-
+      this.searchedText = '';
       
     },
 
@@ -84,9 +86,9 @@
 
           })
 
-        
       }
       
+      return this.films = []
     },
 
     searchTvSeries(ccs){
@@ -108,8 +110,9 @@
 
           })
 
-        
       }
+
+      return this.tvSeries = []
     }
 
   }

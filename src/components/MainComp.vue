@@ -3,7 +3,7 @@
       <div class="container">
           <div class="movies-box">
                 <h1>MOVIES</h1>
-                <div id="movies-container">
+                <div v-if="films.length > 0" id="movies-container">
                   <div class="movies-card" v-for="item in films" :key="item.id">
                     <h3>{{item.title}}</h3>
                     <p>{{item.original_title}}</p>
@@ -16,7 +16,7 @@
 
           <div class="tv-series-box">
               <h1>TV SERIES</h1>
-              <div id="tv-series-container">
+              <div v-if="tvSeries.length > 0" id="tv-series-container">
                 <div class="series-card" v-for="item in tvSeries" :key="item.id">
                   <h3>{{item.name}}</h3>
                   <p>{{item.original_name}}</p>
@@ -44,9 +44,6 @@ export default {
     },
 
     methods:{
-        cov(){
-            console.log(this.films)
-        }
     }
 }
 </script>
@@ -78,8 +75,12 @@ export default {
                     border-radius: 5px;
                     margin-bottom: 20px;
                     margin-left: 2px;
+                    h3{
+                        overflow-wrap: break-word;
+                    }
                     p{
                         color: #959393;
+                        overflow-wrap: break-word;
                     }
                     span{
                         font-size: 16px;
@@ -108,8 +109,12 @@ export default {
                     border-radius: 5px;
                     margin-bottom: 20px;
                     margin-left: 2px;
+                    h3{
+                        overflow-wrap: break-word;
+                    }
                     p{
                         color: #959393;
+                        overflow-wrap: break-word;
                     }
                     span{
                         font-size: 16px;
