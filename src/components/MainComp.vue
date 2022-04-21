@@ -5,10 +5,11 @@
                 <h1>MOVIES</h1>
                 <div v-if="films.length > 0" id="movies-container">
                   <div class="movies-card" v-for="item in films" :key="item.id">
-                    <h3>{{item.title}}</h3>
+                    <img :src="createImagePath('/w342', item.backdrop_path)" alt="">
+                    <!--<h3>{{item.title}}</h3>
                     <p>{{item.original_title}}</p>
                     <span>{{item.original_language}}</span>
-                    <span>{{item.vote_average}}</span>
+                    <span>{{item.vote_average}}</span>-->
                   </div>
                 </div>
               
@@ -18,10 +19,11 @@
               <h1>TV SERIES</h1>
               <div v-if="tvSeries.length > 0" id="tv-series-container">
                 <div class="series-card" v-for="item in tvSeries" :key="item.id">
-                  <h3>{{item.name}}</h3>
+                  <img :src="createImagePath('/w342', item.backdrop_path)" alt="">   
+                  <!--<h3>{{item.name}}</h3>
                   <p>{{item.original_name}}</p>
                   <span>{{item.original_language}}</span>
-                  <span>{{item.vote_average}}</span>
+                  <span>{{item.vote_average}}</span>-->
                 </div>
               </div>
               
@@ -32,9 +34,17 @@
 </template>
 
 <script>
+//import axios from 'axios'
 
 export default {
     name: 'MainComp',
+
+    data(){
+        return {
+
+            defaultImgUrl: 'https://image.tmdb.org/t/p/'
+        }
+    },
 
     props: {
 
@@ -44,6 +54,12 @@ export default {
     },
 
     methods:{
+
+        createImagePath(height, imgName){
+            const totalPath = this.defaultImgUrl + height + imgName
+
+            return totalPath
+        }
     }
 }
 </script>
