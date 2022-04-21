@@ -68,4 +68,26 @@ export default {
         }
     }
 
+    @media screen and (max-width: 370px) {
+
+        header{
+            #logo-box{
+                img{
+                    width: 49%;
+                }
+            }
+
+            #search-box{
+                width: 43%;
+                input{
+                    width: 100%;
+                }
+                button{
+                    display: none;
+                }
+            }
+        }
+        
+    }
+
 </style>

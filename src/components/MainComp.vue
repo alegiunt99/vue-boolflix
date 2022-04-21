@@ -124,5 +124,68 @@ export default {
             }
         }
     }
+
+    @media screen and (max-width: 850px) {
+        .container{
+            .movies-box{
+                #movies-container{
+                    .movies-card{
+                        width: 31%;
+                    }
+                }
+            }
+             .tv-series-box{
+                #tv-series-container{
+                    .series-card{
+                        width: 31%;
+                    }
+                }
+            }
+        }
+        
+        
+    }
+
+    @media screen and (max-width: 622px) {
+
+        .container{
+            .movies-box{
+                #movies-container{
+                    .movies-card{
+                        width: 46%;
+                    }
+                }
+            }
+             .tv-series-box{
+                #tv-series-container{
+                    .series-card{
+                        width: 46%;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    @media screen and (max-width: 370px) {
+
+        .container{
+            .movies-box{
+                #movies-container{
+                    .movies-card{
+                        width: 88%;
+                    }
+                }
+            }
+             .tv-series-box{
+                #tv-series-container{
+                    .series-card{
+                        width: 88%;
+                    }
+                }
+            }
+        }
+        
+    }
     
 </style>
