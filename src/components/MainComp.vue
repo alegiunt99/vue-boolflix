@@ -2,10 +2,10 @@
   <main>
       <div class="container">
           <div class="movies-box">
-                <h1>MOVIES</h1>
+                <h1>FILM</h1>
                 <div v-if="films.length > 0" id="movies-container">
                   <div class="movies-card" v-for="item in films" :key="item.id">
-                    <img :src="createImagePath('/w342', item.backdrop_path)" alt="">
+                    <img :src="imgOrError('/w342', item.backdrop_path)" :alt="item.title">
                     <div class="movie-description">
                         <p>Titolo: {{item.title}}</p>
                         <p>Titolo originale: {{item.original_title}}</p>
@@ -18,10 +18,10 @@
           </div>
 
           <div class="tv-series-box">
-              <h1>TV SERIES</h1>
+              <h1>SERIE TV</h1>
               <div v-if="tvSeries.length > 0" id="tv-series-container">
                 <div class="series-card" v-for="item in tvSeries" :key="item.id">
-                  <img :src="createImagePath('/w342', item.backdrop_path)" alt=""> 
+                  <img :src="imgOrError('/w342', item.backdrop_path)" :alt="item.name"> 
                   <div class="series-description">
                         <p><strong>Titolo</strong>: {{item.name}}</p>
                         <p><strong>Titolo originale</strong>: {{item.original_name}}</p>
@@ -59,6 +59,20 @@ export default {
     },
 
     methods:{
+
+        imgOrError(height, imgName){
+
+            const errorImgPath = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png'
+
+            if(imgName === null){
+
+                return errorImgPath
+
+            }
+
+            return this.createImagePath(height, imgName)
+
+        },
 
         createImagePath(height, imgName){
             const totalPath = this.defaultImgUrl + height + imgName
