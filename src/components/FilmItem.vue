@@ -7,7 +7,7 @@
         <div class="movie-description">
             <p><strong>Titolo:</strong> {{film.title}}</p>
             <p><strong>Titolo originale:</strong> {{film.original_title}}</p>
-            <span><strong>Voto:</strong> {{film.vote_average}}</span>
+            <span><strong>Voto:</strong> {{howStarsVote()}}</span>
             <p>
                 <img v-if="hasImage" @error="imageError($event)" class="flag" :src="require(`@/assets/img/${film.original_language}.png`)" :alt="film.title">
                 <span v-else class="language-error"> {{film.original_language}}</span>
@@ -79,6 +79,25 @@ export default {
 
             event.target.style.display= 'none';
             this.hasError = true
+        },
+
+        // per il numero di stelle
+        howStarsVote(){
+
+            // creo una variabile che restituisce solo numeri interi
+            let vote = Math.floor(this.film.vote_average)
+
+            // creo una condizione
+            if(vote < 5){
+
+                //se il voto è inferiore a 5, si lascia normale
+                return vote
+
+            }
+            
+            //altrimenti, se è maggiore o uguale a 5, spunterà comunque 5
+            
+            return vote = 5
         }
     },
 
