@@ -7,7 +7,12 @@
         <div class="movie-description">
             <p><strong>Titolo:</strong> {{film.title}}</p>
             <p><strong>Titolo originale:</strong> {{film.original_title}}</p>
-            <span><strong>Voto:</strong> {{howStarsVote()}}</span>
+            <span>
+                <strong>Voto:</strong>  
+                <span v-for="(star, index) in howStarsVote" :key="index" class="stars-vote">
+                    <i class="fa-solid fa-star"></i>
+                </span>
+            </span>
             <p>
                 <img v-if="hasImage" @error="imageError($event)" class="flag" :src="require(`@/assets/img/${film.original_language}.png`)" :alt="film.title">
                 <span v-else class="language-error"> {{film.original_language}}</span>
@@ -28,7 +33,8 @@ export default {
 
             hasError: false,
 
-            aviableFlags: ['en', 'it', 'fr', 'ja', 'es']
+            aviableFlags: ['en', 'it', 'fr', 'ja', 'es'],
+
         }
     },
 
@@ -36,17 +42,47 @@ export default {
         film: Object
     },
 
+    computed:{
+        hasImage(){
+            return this.aviableFlags.includes(this.film.original_language);
+        },
+
+        howStarsVote(){
+                
+                //let newArray = ['a', 'b', 'c', 'd', 'e'];
+                let newArray = [];
+
+                let vote = this.numberVote();
+                
+                while(newArray.length < vote){
+                    
+                    newArray.push('x');
+
+                }
+                /*while(newArray.length > vote){
+                    console.log('dentro');
+
+                    newArray.pop();
+
+
+                }*/
+                
+                return newArray;
+        },
+        
+    },
+
     methods:{
 
         imgOrError(height, imgName){
             
             //creo una costante con il link dell'immagine di errore
-            const errorImgPath = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png'
+            const errorImgPath = require(`@/assets/err_img.jpg`);
 
             if(imgName === null){      // se il path della copertina è null
                 
                 // carica l'immagine di errore
-                return errorImgPath
+                return errorImgPath;
 
             }
             
@@ -81,11 +117,13 @@ export default {
             this.hasError = true
         },
 
-        // per il numero di stelle
-        howStarsVote(){
+        
 
+        // per il numero di stelle
+        numberVote(){
+            
             // creo una variabile che restituisce solo numeri interi
-            let vote = Math.floor(this.film.vote_average)
+            let vote = Math.floor(this.film.vote_average)+1;
 
             // creo una condizione
             if(vote < 5){
@@ -96,20 +134,21 @@ export default {
             }
             
             //altrimenti, se è maggiore o uguale a 5, spunterà comunque 5
-            
+
             return vote = 5
-        }
+        },
+
+        
     },
 
-    computed:{
-        hasImage(){
-            return this.aviableFlags.includes(this.film.original_language)
-        }
-    }
+    
 }
 </script>
 
 <style lang="scss" scoped>
+    .poster-img{
+        height: 100%;
+    }
     .movie-description{
         display: none;
         flex-direction: column;
@@ -139,4 +178,9 @@ export default {
             flex-direction: column;
         }
     }
+    .stars-vote{
+        color: yellow;
+        margin-right: 3px;
+    }
+    
 </style>
