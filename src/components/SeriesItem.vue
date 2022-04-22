@@ -10,7 +10,12 @@
             <img v-if="hasImage" @error="imageError($event)" class="flag" :src="require(`@/assets/img/${serie.original_language}.png`)" :alt="serie.name">
             <span v-else class="language-error"> {{serie.original_language}}</span>
         </p>
-        <span><strong>Voto:</strong>{{howStarsVote()}}</span>
+        <span>
+            <strong>Voto:</strong>
+            <span v-for="(star, index) in howStarsVote" :key="index" class="stars-vote">
+                    <i class="fa-solid fa-star"></i>
+            </span>
+        </span>
     </div>
                   
   </div>
@@ -28,7 +33,7 @@ export default {
 
             hasError: false,
 
-            aviableFlags: ['en', 'it', 'fr', 'ja', 'es']
+            aviableFlags: ['en', 'it', 'fr', 'ja', 'es', 'de']
         }
     },
 
@@ -41,7 +46,7 @@ export default {
         imgOrError(height, imgName){
             
             //creo una costante con il link dell'immagine di errore
-            const errorImgPath = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png'
+            const errorImgPath = require(`@/assets/err_img.jpg`);
 
             if(imgName === null){      // se il path della copertina è null
                 
@@ -82,10 +87,10 @@ export default {
         },
 
         // per il numero di stelle
-        howStarsVote(){
+        numberVote(){
 
             // creo una variabile che restituisce solo numeri interi
-            let vote = Math.floor(this.serie.vote_average);
+            let vote = Math.floor(this.serie.vote_average)+1;
 
             // creo una condizione
             if(vote < 5){
@@ -104,14 +109,39 @@ export default {
     computed:{
         hasImage(){
             return this.aviableFlags.includes(this.serie.original_language)
-        }
+        },
+
+        howStarsVote(){
+                
+                //let newArray = ['a', 'b', 'c', 'd', 'e'];
+                let newArray = [];
+
+                let vote = this.numberVote();
+                
+                while(newArray.length < vote){
+                    
+                    newArray.push('x');
+
+                }
+                /*while(newArray.length > vote){
+                    console.log('dentro');
+
+                    newArray.pop();
+
+
+                }*/
+                
+                return newArray;
+        },
     }
 }
 </script>
 
 <style lang="scss" scoped>
 
-    
+    .poster-img{
+        height: 100%;
+    }
     .series-description{
         display: none;
         flex-direction: column;
@@ -140,5 +170,9 @@ export default {
             display: flex;
             flex-direction: column;
         }
+    }
+    .stars-vote{
+        color: yellow;
+        margin-right: 3px;
     }
 </style>

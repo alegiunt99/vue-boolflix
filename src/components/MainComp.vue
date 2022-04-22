@@ -28,7 +28,7 @@
                 <div v-if="tvSeries.length > 0" id="tv-series-container">
 
                     <!-- creo la card di ogni serie trovata -->
-                    
+
                     <SeriesItem class="series-card" :serie="serie"  v-for="serie in tvSeries" :key="serie.id"/>
 
                 </div>
@@ -46,19 +46,6 @@ import SeriesItem from '@/components/SeriesItem.vue';
 export default {
     // metto il nome del componente
     name: 'MainComp',
-
-    // creo i data
-    data(){
-        return {
-
-            // creo un dato che mi serve per caricare le immagini
-            defaultImgUrl: 'https://image.tmdb.org/t/p/',
-
-
-            icoLangPath: './en.png'
-
-        }
-    },
 
     components:{
 
@@ -174,6 +161,49 @@ export default {
         }
 
     }
+
+    @media screen and (max-width: 850px) {
+        .container{
+            .movies-box{
+                #movies-container{
+                    .movies-card{
+                        width: 31%;
+                    }
+                }
+            }
+             .tv-series-box{
+                #tv-series-container{
+                    .series-card{
+                        width: 31%;
+                    }
+                }
+            }
+        }
+        
+        
+    }
+
+    
+    @media screen and (max-width: 622px) {
+        .container{
+            .movies-box{
+                #movies-container{
+                    .movies-card{
+                        width: 46%;
+                    }
+                }
+            }
+             .tv-series-box{
+                #tv-series-container{
+                    .series-card{
+                        width: 46%;
+                    }
+                }
+            }
+        }
+        
+    }
+
 
     @media screen and (max-width: 370px) {
 

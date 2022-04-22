@@ -33,7 +33,7 @@ export default {
 
             hasError: false,
 
-            aviableFlags: ['en', 'it', 'fr', 'ja', 'es'],
+            aviableFlags: ['en', 'it', 'fr', 'ja', 'es', 'de'],
 
         }
     },
