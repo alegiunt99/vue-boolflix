@@ -89,10 +89,11 @@
           })
 
       }
-    
+      
+      return this.films = []
     },
 
-    // creo una funzione per ricevere i FILM con axios
+    // creo una funzione per ricevere le SERIE TV con axios
     searchTvSeries(querys){
 
       // creo i parametri indispensabili per la chiamata di axios
@@ -120,6 +121,7 @@
 
       }
 
+      return this.tvSeries = []
     }
 
   }
