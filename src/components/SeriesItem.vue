@@ -1,12 +1,15 @@
 <template>
   <div id="card-serie">
     <!-- carico l'immagine che deve essere visualizzata -->
-    <img :src="imgOrError('/w342', serie.poster_path)" :alt="serie.name"> 
+    <img :src="imgOrError('/w342', serie.poster_path)" :alt="serie.name" class="poster-img"> 
     <!-- e la descrizione che spunta con l'hover -->
     <div class="series-description">
         <p><strong>Titolo:</strong> {{serie.name}}</p>
         <p><strong>Titolo originale:</strong> {{serie.original_name}}</p>
-        <span><strong>Lingua:</strong> {{serie.original_language}}</span>
+        <p>
+            <img v-if="hasImage" @error="imageError($event)" class="flag" :src="require(`@/assets/img/${serie.original_language}.png`)" :alt="serie.name">
+            <span v-else class="language-error"> {{serie.original_language}}</span>
+        </p>
         <span><strong>Voto:</strong> {{serie.vote_average}}</span>
     </div>
                   
@@ -23,9 +26,9 @@ export default {
             // creo un dato che mi serve per caricare le immagini
             defaultImgUrl: 'https://image.tmdb.org/t/p/',
 
+            hasError: false,
 
-            icoLangPath: './en.png'
-
+            aviableFlags: ['en', 'it', 'fr', 'ja', 'es']
         }
     },
 
@@ -70,6 +73,18 @@ export default {
 
             // e ritorna il path intero
             return totalPath
+        },
+
+        imageError(event){
+
+            event.target.style.display= 'none';
+            this.hasError = true
+        }
+    },
+
+    computed:{
+        hasImage(){
+            return this.aviableFlags.includes(this.serie.original_language)
         }
     }
 }
@@ -90,11 +105,16 @@ export default {
         strong{                    
             color: gray;
         }
+        
+        img.flag{
+            display: inline-block;
+            width: 22px;
+        }
     }
 
     #card-serie:hover{
         cursor: pointer;            
-        img{
+        .poster-img{
             display: none;
         }
         .series-description{
